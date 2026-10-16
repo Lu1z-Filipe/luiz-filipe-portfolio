@@ -19,7 +19,7 @@ test('carrega sem erros de console nem requisições falhas', async ({ page }) =
 test('estrutura semântica: idioma, título, um h1 e landmarks', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR');
-  await expect(page).toHaveTitle(/Luiz Filipe Caroso/);
+  await expect(page).toHaveTitle(/Luiz Filipe Nascimento/);
   await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /QA/);
   await expect(page.locator('meta[property="og:title"]')).toHaveCount(1);
   await expect(page.locator('h1')).toHaveCount(1);
