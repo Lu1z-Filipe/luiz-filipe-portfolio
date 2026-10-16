@@ -1,4 +1,4 @@
-# Portfólio de QA — Luiz Filipe Caroso
+# Portfólio de QA — Luiz Filipe Nascimento
 
 Portfólio profissional (site estático) acompanhado de **estudos técnicos de QA e automação** executáveis e testados em CI.
 
