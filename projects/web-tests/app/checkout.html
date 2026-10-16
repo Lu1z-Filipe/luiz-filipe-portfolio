@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Loja Demo — Checkout</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Checkout</h1>
+    <p>Total do pedido: <strong data-testid="checkout-total">R$ 0,00</strong></p>
+    <form id="checkout-form" novalidate>
+      <label for="name">Nome completo</label>
+      <input id="name" name="name" autocomplete="name" aria-describedby="name-error" />
+      <p id="name-error" class="error" hidden></p>
+
+      <label for="email">E-mail</label>
+      <input id="email" name="email" type="email" aria-describedby="email-error" />
+      <p id="email-error" class="error" hidden></p>
+
+      <label for="cep">CEP (8 dígitos)</label>
+      <input id="cep" name="cep" inputmode="numeric" aria-describedby="cep-error" />
+      <p id="cep-error" class="error" hidden></p>
+
+      <label for="card">Cartão (16 dígitos)</label>
+      <input id="card" name="card" inputmode="numeric" aria-describedby="card-error" />
+      <p id="card-error" class="error" hidden></p>
+
+      <button type="submit">Finalizar pedido</button>
+    </form>
+    <section id="confirmation" class="success" role="status" hidden></section>
+    <script type="module" src="checkout.js"></script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Permissões mínimas por padrão; o job de deploy eleva apenas o necessário.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '24'
+
+jobs:
+  lint:
+    name: Lint e varredura de segredos
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '${{ env.NODE_VERSION }}', cache: npm }
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run scan
+
+  sql:
+    name: Testes SQL
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '${{ env.NODE_VERSION }}', cache: npm }
+      - run: npm ci
+      - run: npm run test:sql
+
+  api:
+    name: Testes de API
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '${{ env.NODE_VERSION }}', cache: npm }
+      - run: npm ci
+      - run: npm run test:api
+        env: { CI: 'true' }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: relatorio-api
+          path: projects/api-tests/reports
+          if-no-files-found: ignore
+          retention-days: 14
+
+  web:
+    name: Testes web (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '${{ env.NODE_VERSION }}', cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:web
+        env: { CI: 'true' }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: relatorio-web
+          path: |
+            projects/web-tests/reports
+            projects/web-tests/test-results
+          if-no-files-found: ignore
+          retention-days: 14
+
+  site:
+    name: Build e testes do site
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      VITE_REPO_URL: https://github.com/${{ github.repository }}
+      VITE_GITHUB_PROFILE: https://github.com/${{ github.repository_owner }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '${{ env.NODE_VERSION }}', cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:site # gera o build de produção e o testa
+        env: { CI: 'true' }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: relatorio-site
+          path: |
+            site/reports
+            site/test-results
+          if-no-files-found: ignore
+          retention-days: 14
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with: { path: site/dist }
+
+  # Só publica no branch principal e somente se TODAS as verificações obrigatórias passaram.
+  deploy:
+    name: Publicar no GitHub Pages
+    needs: [lint, sql, api, web, site]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
