@@ -28,6 +28,17 @@ test('estrutura semântica: idioma, título, um h1 e landmarks', async ({ page }
   await expect(page.getByRole('contentinfo')).toBeVisible();
 });
 
+test('imagem de compartilhamento (Open Graph) existe e é servida', async ({ page, request }) => {
+  await page.goto('/');
+  const og = await page.locator('meta[property="og:image"]').getAttribute('content');
+  expect(og).toMatch(/\/og\.png$/);
+  await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute('content', 'summary_large_image');
+  // o endereço absoluto só existe após a publicação; localmente validamos o arquivo do build
+  const res = await request.get('/og.png');
+  expect(res.status()).toBe(200);
+  expect(res.headers()['content-type']).toContain('image/png');
+});
+
 test('todas as seções existem e todo link de âncora do menu aponta para uma delas', async ({ page }) => {
   await page.goto('/');
   for (const id of SECTIONS) await expect(page.locator(`#${id}`)).toHaveCount(1);
