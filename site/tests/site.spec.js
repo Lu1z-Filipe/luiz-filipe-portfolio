@@ -60,7 +60,17 @@ test('links para repositório/GitHub ficam ocultos quando as variáveis de ambie
   test.skip(!!process.env.VITE_REPO_URL, 'build com repositório definido');
   await page.goto('/');
   await expect(page.locator('[data-repo]:visible')).toHaveCount(0);
+  await expect(page.locator('[data-github-repo]:visible')).toHaveCount(0);
   await expect(page.locator('[data-github]:visible')).toHaveCount(0);
+});
+
+test('links dos estudos apontam para os repositórios próprios quando o perfil está definido', async ({ page }) => {
+  test.skip(!process.env.VITE_GITHUB_PROFILE, 'build sem perfil do GitHub definido');
+  await page.goto('/#projetos');
+  const perfil = process.env.VITE_GITHUB_PROFILE.replace(/\/$/, '');
+  for (const repo of ['qa-api-tests', 'qa-web-tests-playwright', 'qa-sql-data-validation']) {
+    await expect(page.locator(`[data-github-repo="${repo}"]`)).toHaveAttribute('href', `${perfil}/${repo}`);
+  }
 });
 
 test('projetos demonstrativos são identificados como estudos pessoais', async ({ page }) => {

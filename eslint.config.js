@@ -9,7 +9,7 @@ export default [
     rules: { 'no-unused-vars': ['error', { argsIgnorePattern: '^_' }] },
   },
   {
-    files: ['site/src/**/*.js', 'site/tests/**/*.js', 'projects/web-tests/app/**/*.js'],
+    files: ['site/src/**/*.js', 'site/tests/**/*.js'],
     languageOptions: { globals: { ...globals.browser } },
   },
 ];

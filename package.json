@@ -2,19 +2,16 @@
   "name": "luiz-filipe-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Portfólio profissional de QA com estudos técnicos de automação (API, Web, SQL) e pipeline de CI/CD.",
+  "description": "Portfólio profissional de QA (site estático) com pipeline de CI/CD. Os estudos técnicos vivem em repositórios próprios.",
   "type": "module",
   "engines": { "node": ">=22.5" },
-  "workspaces": ["site", "projects/api-tests", "projects/web-tests", "projects/sql-validation"],
+  "workspaces": ["site"],
   "scripts": {
     "lint": "eslint .",
     "scan": "node scripts/check-secrets.mjs",
     "build": "npm run build -w site",
     "test:site": "npm run test -w site",
-    "test:api": "npm run test -w projects/api-tests",
-    "test:web": "npm run test -w projects/web-tests",
-    "test:sql": "npm run test -w projects/sql-validation",
-    "test": "npm run test:api && npm run test:sql && npm run test:web && npm run test:site"
+    "test": "npm run test:site"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

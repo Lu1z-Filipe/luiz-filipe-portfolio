@@ -8,6 +8,11 @@ if (githubProfile) {
     a.href = githubProfile;
     a.hidden = false;
   }
+  // Estudos técnicos vivem em repositórios próprios, sob o mesmo perfil.
+  for (const a of document.querySelectorAll('[data-github-repo]')) {
+    a.href = `${githubProfile}/${a.dataset.githubRepo}`;
+    a.hidden = false;
+  }
 }
 if (repoUrl) {
   for (const a of document.querySelectorAll('[data-repo]')) {
