@@ -32,7 +32,7 @@ Portfólio profissional (site estático) testado em CI. Os **estudos técnicos d
 npm install
 npm run lint          # ESLint
 npm run scan          # varredura de segredos
-npm run test:site     # 18 execuções (9 testes x desktop e mobile); faz o build e testa o resultado
+npm run test:site     # 40 execuções (20 testes x desktop e mobile); faz o build e testa o resultado
 npm test              # igual a test:site
 npm run dev -w site   # site em modo desenvolvimento
 ```
@@ -61,6 +61,11 @@ No GitHub: **Settings → Pages → Build and deployment → Source: GitHub Acti
 
 **Atualizar o currículo/conteúdo:** edite `site/index.html` (texto estático, sem etapa de dados). Mantenha a distinção
 das etiquetas de competência: `pro` (citada em experiência), `cv` (listada no currículo) e `est` (estudo pessoal).
+
+**Idiomas (PT/EN):** o português é o HTML original; o inglês fica em `site/src/translations.js`, ligado por `data-i18n="chave"`
+(`data-i18n-aria` e `data-i18n-content` para atributos). Ao mudar um texto, altere o HTML **e** a tradução; um teste falha se
+alguma chave faltar ou sobrar. Idioma inicial: `?lang=pt|en` na URL > escolha salva (localStorage) > idioma do navegador
+(pt* abre em português, qualquer outro em inglês). Link direto em inglês: `.../luiz-filipe-portfolio/?lang=en`.
 
 **Adicionar um estudo:**
 1. Crie um repositório próprio com `package.json`, testes, `README.md`, dados sintéticos e um workflow de CI.

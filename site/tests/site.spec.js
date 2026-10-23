@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { en } from '../src/translations.js';
 
 const SECTIONS = ['inicio', 'sobre', 'competencias', 'experiencia', 'projetos', 'formacao', 'contato'];
 
@@ -90,6 +91,91 @@ test('navegação por teclado: o primeiro Tab leva ao link de pular conteúdo', 
   await page.goto('/');
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'Pular para o conteúdo' })).toBeFocused();
+});
+
+test.describe('idioma PT/EN', () => {
+  const html = readFileSync(join(fileURLToPath(new URL('..', import.meta.url)), 'index.html'), 'utf8');
+  const keysInHtml = [...html.matchAll(/data-i18n(?:-aria|-content)?="([^"]+)"/g)].map((m) => m[1]);
+
+  test('toda chave marcada no HTML tem tradução e toda tradução é usada', () => {
+    expect(new Set(keysInHtml)).toEqual(new Set(Object.keys(en)));
+    for (const [k, v] of Object.entries(en)) expect(v.trim(), `tradução vazia: ${k}`).not.toBe('');
+  });
+
+  test('o seletor troca o conteúdo, o atributo lang e o título, e volta ao português sem perdas', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR');
+    await expect(page.locator('[data-lang="pt"]')).toHaveAttribute('aria-pressed', 'true');
+    const original = await page.locator('main').innerText();
+
+    await page.locator('[data-lang="en"]').click();
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await expect(page.locator('[data-lang="en"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('[data-lang="pt"]')).toHaveAttribute('aria-pressed', 'false');
+    await expect(page.locator('.role')).toContainText('Quality across the whole lifecycle');
+    await expect(page.locator('#h-exp')).toContainText('Experience');
+    await expect(page.getByRole('navigation', { name: 'Main' })).toBeVisible();
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /software quality \(QA\) analyst/);
+    await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute('content', 'en_US');
+    await expect(page).toHaveTitle(/Luiz Filipe Nascimento - QA Engineer/);
+    await expect(page.locator('#projetos .note.strong')).toContainText('They are not projects carried out at companies');
+    await expect(page.locator('h1')).toHaveText('Luiz Filipe Nascimento');
+
+    await page.locator('[data-lang="pt"]').click();
+    await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR');
+    expect(await page.locator('main').innerText()).toBe(original);
+  });
+
+  test('a escolha persiste ao recarregar e fica na URL para compartilhar', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('[data-lang="en"]').click();
+    expect(new URL(page.url()).searchParams.get('lang')).toBe('en');
+    await page.goto('/'); // sem ?lang=: vale a escolha salva
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await page.reload();
+    await expect(page.locator('.role')).toContainText('Test automation');
+  });
+
+  test('?lang= na URL tem prioridade sobre a escolha salva', async ({ page }) => {
+    await page.goto('/?lang=en');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await page.goto('/?lang=pt');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR');
+    await page.goto('/?lang=xx'); // valor inválido é ignorado
+    await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR');
+  });
+
+  test.describe('navegador em inglês', () => {
+    test.use({ locale: 'en-US' });
+    test('sem escolha anterior, abre em inglês', async ({ page }) => {
+      await page.goto('/');
+      await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+      await expect(page.locator('[data-lang="en"]')).toHaveAttribute('aria-pressed', 'true');
+    });
+    test('?lang=pt força o português', async ({ page }) => {
+      await page.goto('/?lang=pt');
+      await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR');
+    });
+  });
+
+  test('em inglês continuam valendo: estudos pessoais, links externos e navegação', async ({ page }) => {
+    await page.goto('/?lang=en#projetos');
+    await expect(page.locator('#projetos .kind')).toHaveCount(4);
+    for (const k of await page.locator('#projetos .kind').allTextContents()) expect(k).toMatch(/personal study/);
+    await expect(page.getByRole('link', { name: 'Email' })).toHaveAttribute('href', 'mailto:luizcaroso@gmail.com');
+    for (const a of await page.locator('a[target="_blank"]:visible').all()) await expect(a).toHaveAttribute('rel', /noopener/);
+    const hrefs = await page.locator('nav a[href^="#"]').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
+    for (const h of hrefs) await expect(page.locator(h)).toHaveCount(1);
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow).toBeLessThanOrEqual(0);
+  });
+
+  test('o seletor é acessível por teclado', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('[data-lang="en"]').focus();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  });
 });
 
 test('build de produção não expõe dados pessoais sensíveis do currículo', async () => {

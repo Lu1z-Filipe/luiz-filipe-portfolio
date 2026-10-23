@@ -27,6 +27,14 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--amber); outline-o
 .nav a { color: var(--muted); text-decoration: none; }
 .nav a:hover, .nav a.active { color: var(--green); }
 .brand { color: var(--text) !important; font-weight: 700; }
+.lang { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.lang button { font: inherit; color: var(--muted); background: transparent; border: 0; padding: 0.3rem 0.7rem; min-width: 2.75rem; min-height: 2.25rem; cursor: pointer; }
+.lang button { display: inline-flex; align-items: center; gap: 0.3rem; }
+.flag { width: 0.9rem; height: auto; border-radius: 1px; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.18); flex: none; }
+.lang button + button { border-left: 1px solid var(--line); }
+.lang button:hover { color: var(--text); }
+.lang button[aria-pressed='true'] { background: var(--green); color: #06210f; font-weight: 700; }
+.lang button:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; }
 .prompt { color: var(--green); }
 
 section { padding: 4rem 0 1rem; }
@@ -70,7 +78,7 @@ h3 { font-size: 1.05rem; margin: 0 0 0.5rem; }
 .timeline > li { position: relative; padding: 0 0 2rem 1rem; }
 .timeline > li::before { content: ''; position: absolute; left: -1.7rem; top: 0.45rem; width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--green); }
 .when { font-family: var(--mono); color: var(--amber); font-size: 0.85rem; margin: 0; }
-.timeline h3 span { color: var(--muted); font-weight: 400; font-size: 0.9rem; margin-left: 0.4rem; }
+.timeline h3 .loc { color: var(--muted); font-weight: 400; font-size: 0.9rem; margin-left: 0.4rem; }
 .timeline ul { margin: 0.5rem 0 0; padding-left: 1.1rem; color: var(--muted); }
 .timeline li li { margin-bottom: 0.3rem; padding: 0; }
 

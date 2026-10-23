@@ -1,3 +1,7 @@
+import { initLang } from './lang.js';
+
+initLang();
+
 // Links que dependem do repositório remoto só aparecem quando VITE_REPO_URL está definido
 // (o workflow de CI define; localmente ficam ocultos em vez de apontar para um endereço inventado).
 const repoUrl = (import.meta.env.VITE_REPO_URL ?? '').replace(/\/$/, '');
