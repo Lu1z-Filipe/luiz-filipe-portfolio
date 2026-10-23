@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Luiz Filipe Nascimento - QA Engineer</title>
+    <title data-i18n="title">Luiz Filipe Nascimento - QA Engineer</title>
     <meta
       name="description"
+      data-i18n-content="meta.description"
       content="Portfólio de Luiz Filipe Nascimento, analista de qualidade de software (QA) desde 2021: testes funcionais, API REST, SQL, automação com Playwright e Cypress, ERP TOTVS e IA aplicada a QA."
     />
     <meta name="author" content="Luiz Filipe Nascimento" />
@@ -15,15 +16,19 @@
     <meta property="og:title" content="Luiz Filipe Nascimento - QA Engineer" />
     <meta
       property="og:description"
+      data-i18n-content="meta.ogdesc"
       content="Qualidade de software ao longo de todo o ciclo: requisitos, testes, automação, dados e CI/CD."
     />
     <meta property="og:url" content="https://lu1z-filipe.github.io/luiz-filipe-portfolio/" />
     <meta property="og:image" content="https://lu1z-filipe.github.io/luiz-filipe-portfolio/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Luiz Filipe Nascimento - QA Engineer, automação de testes" />
+    <meta property="og:image:alt" data-i18n-content="meta.ogalt" content="Luiz Filipe Nascimento - QA Engineer, automação de testes" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://lu1z-filipe.github.io/luiz-filipe-portfolio/" />
+    <link rel="alternate" hreflang="pt-BR" href="https://lu1z-filipe.github.io/luiz-filipe-portfolio/?lang=pt" />
+    <link rel="alternate" hreflang="en" href="https://lu1z-filipe.github.io/luiz-filipe-portfolio/?lang=en" />
+    <link rel="alternate" hreflang="x-default" href="https://lu1z-filipe.github.io/luiz-filipe-portfolio/" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0f14'/%3E%3Cpath d='M16 22l14 10-14 10' stroke='%234ade80' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M36 44h14' stroke='%23fbbf24' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E"
@@ -32,19 +37,38 @@
     <script type="module" src="/src/main.js"></script>
   </head>
   <body>
-    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <a class="skip" href="#conteudo" data-i18n="skip">Pular para o conteúdo</a>
 
     <header class="topbar">
-      <nav class="wrap nav" aria-label="Principal">
-        <a class="brand" href="#inicio" aria-label="Início"><span class="prompt">~/</span>lfn</a>
+      <nav class="wrap nav" aria-label="Principal" data-i18n-aria="aria.nav">
+        <a class="brand" href="#inicio" aria-label="Início" data-i18n-aria="aria.home"><span class="prompt">~/</span>lfn</a>
         <ul>
-          <li><a href="#sobre">sobre</a></li>
-          <li><a href="#competencias">competências</a></li>
-          <li><a href="#experiencia">experiência</a></li>
-          <li><a href="#projetos">projetos</a></li>
-          <li><a href="#formacao">formação</a></li>
-          <li><a href="#contato">contato</a></li>
+          <li><a href="#sobre" data-i18n="nav.about">sobre</a></li>
+          <li><a href="#competencias" data-i18n="nav.skills">competências</a></li>
+          <li><a href="#experiencia" data-i18n="nav.experience">experiência</a></li>
+          <li><a href="#projetos" data-i18n="nav.projects">projetos</a></li>
+          <li><a href="#formacao" data-i18n="nav.education">formação</a></li>
+          <li><a href="#contato" data-i18n="nav.contact">contato</a></li>
         </ul>
+        <div class="lang" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="pt" lang="pt" aria-label="Português" aria-pressed="true">
+            <svg class="flag" viewBox="0 0 20 14" aria-hidden="true" focusable="false">
+              <rect width="20" height="14" fill="#009b3a" />
+              <path d="M10 1.6 18 7l-8 5.4L2 7z" fill="#fedf00" />
+              <circle cx="10" cy="7" r="3.2" fill="#002776" />
+            </svg>
+            PT
+          </button>
+          <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false">
+            <svg class="flag" viewBox="0 0 20 14" aria-hidden="true" focusable="false">
+              <rect width="20" height="14" fill="#fff" />
+              <path d="M0 .54h20M0 2.69h20M0 4.85h20M0 7h20M0 9.15h20M0 11.31h20M0 13.46h20" stroke="#b22234" stroke-width="1.08" />
+              <rect width="8.4" height="7.54" fill="#3c3b6e" />
+              <path d="M1.4 1.5h.01M3.5 1.5h.01M5.6 1.5h.01M7.7 1.5h.01M2.4 3.4h.01M4.5 3.4h.01M6.6 3.4h.01M1.4 5.3h.01M3.5 5.3h.01M5.6 5.3h.01M7.7 5.3h.01M2.4 6.5h.01M4.5 6.5h.01M6.6 6.5h.01" stroke="#fff" stroke-width=".9" stroke-linecap="round" />
+            </svg>
+            EN
+          </button>
+        </div>
       </nav>
     </header>
 
@@ -52,46 +76,46 @@
       <section id="inicio" class="hero wrap" aria-labelledby="h-hero">
         <p class="term"><span class="prompt">luiz@qa:~$</span> whoami</p>
         <h1 id="h-hero">Luiz Filipe Nascimento</h1>
-        <p class="role">QA Engineer · Automação de testes · Qualidade ao longo de todo o ciclo</p>
-        <p class="lead">
+        <p class="role" data-i18n="hero.role">QA Engineer · Automação de testes · Qualidade ao longo de todo o ciclo</p>
+        <p class="lead" data-i18n="hero.lead">
           Analista de qualidade desde 2021. Atuo da análise de requisitos e critérios de aceite até a homologação, com testes
           funcionais, de API e de dados, automação com IA e experiência em ambientes ERP. Já coordenei equipes de teste e de
           desenvolvimento.
         </p>
-        <ul class="facts" aria-label="Destaques">
-          <li><strong>2021</strong><span>atuando em qualidade de software</span></li>
-          <li><strong>Protheus · RM</strong><span>ambientes ERP TOTVS</span></li>
-          <li><strong>Inglês C1</strong><span>nível avançado</span></li>
+        <ul class="facts" aria-label="Destaques" data-i18n-aria="aria.facts">
+          <li><strong>2021</strong><span data-i18n="hero.f1">atuando em qualidade de software</span></li>
+          <li><strong>Protheus · RM</strong><span data-i18n="hero.f2">ambientes ERP TOTVS</span></li>
+          <li><strong data-i18n="hero.f3.t">Inglês C1</strong><span data-i18n="hero.f3">nível avançado</span></li>
         </ul>
         <p class="actions">
-          <a class="btn primary" href="#projetos">Ver projetos práticos</a>
+          <a class="btn primary" href="#projetos" data-i18n="hero.cta">Ver projetos práticos</a>
           <a class="btn" href="https://www.linkedin.com/in/luiz-filipe-caroso" rel="noopener" target="_blank">LinkedIn</a>
           <a class="btn" data-github hidden rel="noopener" target="_blank">GitHub</a>
-          <a class="btn" href="mailto:luizcaroso@gmail.com">E-mail</a>
+          <a class="btn" href="mailto:luizcaroso@gmail.com" data-i18n="btn.email">E-mail</a>
         </p>
       </section>
 
       <section id="sobre" class="wrap" aria-labelledby="h-sobre">
-        <h2 id="h-sobre"><span class="num">01</span> Sobre</h2>
+        <h2 id="h-sobre"><span class="num">01</span> <span data-i18n="h.about">Sobre</span></h2>
         <div class="cols">
           <div>
-            <p>
+            <p data-i18n="about.1">
               Comecei em suporte de TI (2019) e migrei para qualidade de software em 2021, como analista de QA. Passei pela
               gestão do setor de testes e por uma posição de supervisão de desenvolvimento
               antes de voltar à análise de testes, hoje em ambiente ERP.
             </p>
-            <p>
+            <p data-i18n="about.2">
               Entendo qualidade como algo que começa antes do código: requisitos claros, regras de negócio e critérios de
               aceite bem definidos reduzem defeitos mais do que qualquer teste tardio. Por isso participo de refinamentos,
               apoio a definição de escopo e estratégia de testes e acompanho cada defeito até a causa.
             </p>
           </div>
           <div>
-            <p>
+            <p data-i18n="about.3">
               Tenho usado IA, em especial o Claude Code, para gerar cenários, escrever e executar scripts de teste e analisar
               resultados, sempre revisando o que é produzido.
             </p>
-            <p>
+            <p data-i18n="about.4">
               <strong>Objetivo:</strong> posições de QA Engineer, QA Automation, Quality Engineer e SDET, e liderança técnica
               em qualidade de software.
             </p>
@@ -100,47 +124,47 @@
       </section>
 
       <section id="competencias" class="wrap" aria-labelledby="h-comp">
-        <h2 id="h-comp"><span class="num">02</span> Competências</h2>
+        <h2 id="h-comp"><span class="num">02</span> <span data-i18n="h.skills">Competências</span></h2>
         <p class="legend">
-          <span class="tag pro">uso profissional</span> citado nas minhas experiências
-          <span class="tag cv">competência</span> listada no currículo
-          <span class="tag est">estudo pessoal</span> praticado neste repositório
+          <span class="tag pro" data-i18n="leg.pro">uso profissional</span> <span data-i18n="leg.pro.d">citado nas minhas experiências</span>
+          <span class="tag cv" data-i18n="leg.cv">competência</span> <span data-i18n="leg.cv.d">listada no currículo</span>
+          <span class="tag est" data-i18n="leg.est">estudo pessoal</span> <span data-i18n="leg.est.d">praticado neste repositório</span>
         </p>
         <div class="grid">
           <article class="card">
-            <h3>Testes e processos</h3>
+            <h3 data-i18n="c.testing">Testes e processos</h3>
             <p class="tags">
-              <span class="tag pro">funcionais</span><span class="tag pro">exploratórios</span><span class="tag pro">regressivos</span
-              ><span class="tag pro">integração</span><span class="tag pro">homologação (UAT)</span
-              ><span class="tag pro">casos e cenários de teste</span><span class="tag pro">critérios de aceite</span
-              ><span class="tag pro">gestão de defeitos</span><span class="tag pro">análise de riscos</span>
+              <span class="tag pro" data-i18n="t.functional">funcionais</span><span class="tag pro" data-i18n="t.exploratory">exploratórios</span><span class="tag pro" data-i18n="t.regression">regressivos</span
+              ><span class="tag pro" data-i18n="t.integration">integração</span><span class="tag pro" data-i18n="t.uat">homologação (UAT)</span
+              ><span class="tag pro" data-i18n="t.cases">casos e cenários de teste</span><span class="tag pro" data-i18n="t.criteria">critérios de aceite</span
+              ><span class="tag pro" data-i18n="t.defects">gestão de defeitos</span><span class="tag pro" data-i18n="t.risk">análise de riscos</span>
             </p>
           </article>
           <article class="card">
-            <h3>API e integrações</h3>
+            <h3 data-i18n="c.api">API e integrações</h3>
             <p class="tags">
               <span class="tag pro">API REST</span><span class="tag pro">Postman</span><span class="tag pro">Insomnia</span
-              ><span class="tag pro">JSON / XML</span><span class="tag pro">status codes e payloads</span
-              ><span class="tag est">Playwright (API)</span>
+              ><span class="tag pro">JSON / XML</span><span class="tag pro" data-i18n="t.status">status codes e payloads</span
+              ><span class="tag est" data-i18n="t.pwapi">Playwright (API)</span>
             </p>
           </article>
           <article class="card">
-            <h3>Automação e IA</h3>
+            <h3 data-i18n="c.auto">Automação e IA</h3>
             <p class="tags">
-              <span class="tag pro">Cypress</span><span class="tag pro">Claude Code (testes web)</span
-              ><span class="tag cv">Playwright</span><span class="tag est">Playwright (projetos aqui)</span
-              ><span class="tag pro">IA aplicada a QA</span>
+              <span class="tag pro">Cypress</span><span class="tag pro" data-i18n="t.cc">Claude Code (testes web)</span
+              ><span class="tag cv">Playwright</span><span class="tag est" data-i18n="t.pwhere">Playwright (projetos aqui)</span
+              ><span class="tag pro" data-i18n="t.ai">IA aplicada a QA</span>
             </p>
           </article>
           <article class="card">
-            <h3>Dados</h3>
+            <h3 data-i18n="c.data">Dados</h3>
             <p class="tags">
-              <span class="tag pro">SQL</span><span class="tag pro">MySQL</span><span class="tag pro">validação de integridade</span
-              ><span class="tag est">verificações SQL (SQLite)</span>
+              <span class="tag pro">SQL</span><span class="tag pro">MySQL</span><span class="tag pro" data-i18n="t.integrity">validação de integridade</span
+              ><span class="tag est" data-i18n="t.sqlite">verificações SQL (SQLite)</span>
             </p>
           </article>
           <article class="card">
-            <h3>Ferramentas e fluxo</h3>
+            <h3 data-i18n="c.tools">Ferramentas e fluxo</h3>
             <p class="tags">
               <span class="tag pro">Git</span><span class="tag pro">Bitbucket</span><span class="tag pro">Pull Requests</span
               ><span class="tag pro">Jira</span><span class="tag pro">Azure DevOps</span><span class="tag pro">Trello</span
@@ -149,7 +173,7 @@
             </p>
           </article>
           <article class="card">
-            <h3>Metodologias e ERP</h3>
+            <h3 data-i18n="c.method">Metodologias e ERP</h3>
             <p class="tags">
               <span class="tag pro">Scrum</span><span class="tag pro">Kanban</span><span class="tag cv">SDLC / STLC</span
               ><span class="tag cv">DevOps · CI/CD</span><span class="tag pro">TOTVS Protheus</span
@@ -160,112 +184,112 @@
       </section>
 
       <section id="experiencia" class="wrap" aria-labelledby="h-exp">
-        <h2 id="h-exp"><span class="num">03</span> Experiência</h2>
+        <h2 id="h-exp"><span class="num">03</span> <span data-i18n="h.experience">Experiência</span></h2>
         <ol class="timeline">
           <li>
-            <p class="when">Mar 2026 – atual</p>
-            <h3>Analista de Testes PL · SIAN <span>Goiânia, GO</span></h3>
+            <p class="when" data-i18n="w1">Mar 2026 – atual</p>
+            <h3><span data-i18n="r1">Analista de Testes PL · SIAN</span> <span class="loc">Goiânia, GO</span></h3>
             <ul>
-              <li>Análise de requisitos funcionais e não funcionais, apontando riscos, inconsistências e impactos na qualidade.</li>
-              <li>Cenários e casos de teste a partir de regras de negócio e critérios de aceite; participação em refinamentos técnicos.</li>
-              <li>Testes funcionais, regressivos, exploratórios, integrados e de homologação (UAT), incluindo patches e novas versões.</li>
-              <li>Validação de dados com SQL/MySQL e testes de API REST com Postman e Insomnia (endpoints, métodos, status codes, JSON/XML).</li>
-              <li>Automação de testes web e uso de IA em QA com Claude Code: geração de cenários, scripts, execução e análise de resultados.</li>
-              <li>Scrum/Kanban, Git, Bitbucket e revisão de Pull Requests; demandas via Jira, Azure DevOps e Trello.</li>
+              <li data-i18n="e1.1">Análise de requisitos funcionais e não funcionais, apontando riscos, inconsistências e impactos na qualidade.</li>
+              <li data-i18n="e1.2">Cenários e casos de teste a partir de regras de negócio e critérios de aceite; participação em refinamentos técnicos.</li>
+              <li data-i18n="e1.3">Testes funcionais, regressivos, exploratórios, integrados e de homologação (UAT), incluindo patches e novas versões.</li>
+              <li data-i18n="e1.4">Validação de dados com SQL/MySQL e testes de API REST com Postman e Insomnia (endpoints, métodos, status codes, JSON/XML).</li>
+              <li data-i18n="e1.5">Automação de testes web e uso de IA em QA com Claude Code: geração de cenários, scripts, execução e análise de resultados.</li>
+              <li data-i18n="e1.6">Scrum/Kanban, Git, Bitbucket e revisão de Pull Requests; demandas via Jira, Azure DevOps e Trello.</li>
             </ul>
           </li>
           <li>
-            <p class="when">Dez 2024 – Fev 2026</p>
-            <h3>Supervisor de Desenvolvimento · SoftNews <span>Anápolis, GO</span></h3>
+            <p class="when" data-i18n="w2">Dez 2024 – Fev 2026</p>
+            <h3><span data-i18n="r2">Supervisor de Desenvolvimento · SoftNews</span> <span class="loc">Anápolis, GO</span></h3>
             <ul>
-              <li>Coordenação de projetos de desenvolvimento, prazos e qualidade das entregas; relatórios de progresso às partes interessadas.</li>
-              <li>Supervisão de equipes multidisciplinares, análise de indicadores e mapeamento de processos para reduzir gargalos.</li>
-              <li>Conferência de documentação técnica e validação de dados e resultados.</li>
+              <li data-i18n="e2.1">Coordenação de projetos de desenvolvimento, prazos e qualidade das entregas; relatórios de progresso às partes interessadas.</li>
+              <li data-i18n="e2.2">Supervisão de equipes multidisciplinares, análise de indicadores e mapeamento de processos para reduzir gargalos.</li>
+              <li data-i18n="e2.3">Conferência de documentação técnica e validação de dados e resultados.</li>
             </ul>
           </li>
           <li>
-            <p class="when">Abr 2021 – Dez 2024</p>
-            <h3>Analista de QA · GR8 Sistemas e Tecnologia <span>Anápolis, GO</span></h3>
+            <p class="when" data-i18n="w3">Abr 2021 – Dez 2024</p>
+            <h3><span data-i18n="r3">Analista de QA · GR8 Sistemas e Tecnologia</span> <span class="loc">Anápolis, GO</span></h3>
             <ul>
-              <li>Verificações detalhadas de funcionalidades contra os requisitos; criação de cenários de teste e documentação.</li>
-              <li>Testes de novas funcionalidades com foco em falhas, usabilidade, desempenho e segurança; direcionamento das correções.</li>
-              <li>Gestão do setor de testes: coordenação da equipe, definição de processos de trabalho e qualidade das entregas.</li>
-              <li>Colaboração com o desenvolvimento para que as melhorias atendessem às expectativas dos stakeholders.</li>
+              <li data-i18n="e3.1">Verificações detalhadas de funcionalidades contra os requisitos; criação de cenários de teste e documentação.</li>
+              <li data-i18n="e3.2">Testes de novas funcionalidades com foco em falhas, usabilidade, desempenho e segurança; direcionamento das correções.</li>
+              <li data-i18n="e3.3">Gestão do setor de testes: coordenação da equipe, definição de processos de trabalho e qualidade das entregas.</li>
+              <li data-i18n="e3.4">Colaboração com o desenvolvimento para que as melhorias atendessem às expectativas dos stakeholders.</li>
             </ul>
           </li>
           <li>
-            <p class="when">Mar 2019 – Abr 2021</p>
-            <h3>Analista de suporte de TI · GR8 Sistemas e Tecnologia <span>Anápolis, GO</span></h3>
+            <p class="when" data-i18n="w4">Mar 2019 – Abr 2021</p>
+            <h3><span data-i18n="r4">Analista de suporte de TI · GR8 Sistemas e Tecnologia</span> <span class="loc">Anápolis, GO</span></h3>
             <ul>
-              <li>Manutenção de hardware e software e suporte técnico a usuários, com identificação de melhorias nos processos internos.</li>
+              <li data-i18n="e4.1">Manutenção de hardware e software e suporte técnico a usuários, com identificação de melhorias nos processos internos.</li>
             </ul>
           </li>
         </ol>
-        <p class="note">Experiências anteriores (2016–2019): estágio na Claro Empresas (Celmax Telecom) e aprendiz na Soloplan, em funções administrativas.</p>
+        <p class="note" data-i18n="exp.note">Experiências anteriores (2016–2019): estágio na Claro Empresas (Celmax Telecom) e aprendiz na Soloplan, em funções administrativas.</p>
       </section>
 
       <section id="projetos" class="wrap" aria-labelledby="h-proj">
-        <h2 id="h-proj"><span class="num">04</span> Projetos de QA e automação</h2>
-        <p class="note strong">
+        <h2 id="h-proj"><span class="num">04</span> <span data-i18n="h.projects">Projetos de QA e automação</span></h2>
+        <p class="note strong" data-i18n="proj.note">
           Estudos técnicos pessoais, executáveis e documentados. Usam aplicações e dados sintéticos criados para estes
           estudos. <strong>Não são projetos executados em empresas onde trabalhei.</strong>
         </p>
         <div class="grid projects">
           <article class="card">
-            <p class="kind">estudo pessoal · API</p>
-            <h3>Automação de testes de API</h3>
-            <p>
+            <p class="kind" data-i18n="k.api">estudo pessoal · API</p>
+            <h3 data-i18n="p1.t">Automação de testes de API</h3>
+            <p data-i18n="p1.d">
               Suíte Playwright contra uma API local controlada (login, produtos, pedidos): sucesso e falha, contrato de erro,
               validação de campos, valores-limite, regra de desconto e estoque, autenticação.
             </p>
             <p class="tags"><span class="tag">Playwright</span><span class="tag">Node.js</span><span class="tag">JUnit + HTML</span></p>
-            <a class="more" data-github-repo="qa-api-tests" hidden rel="noopener" target="_blank">ver código e README ⟶</a>
+            <a class="more" data-github-repo="qa-api-tests" hidden rel="noopener" target="_blank" data-i18n="more.repo">ver código e README ⟶</a>
           </article>
           <article class="card">
-            <p class="kind">estudo pessoal · Web</p>
-            <h3>Automação de testes web</h3>
-            <p>
+            <p class="kind" data-i18n="k.web">estudo pessoal · Web</p>
+            <h3 data-i18n="p2.t">Automação de testes web</h3>
+            <p data-i18n="p2.d">
               Fluxo de login, catálogo, carrinho e checkout com validação de formulário, cenários positivos e negativos,
               seletores por papel/rótulo e execução em desktop e mobile. Screenshot e trace nas falhas.
             </p>
             <p class="tags"><span class="tag">Playwright</span><span class="tag">Page fixtures</span><span class="tag">Trace</span></p>
-            <a class="more" data-github-repo="qa-web-tests-playwright" hidden rel="noopener" target="_blank">ver código e README ⟶</a>
+            <a class="more" data-github-repo="qa-web-tests-playwright" hidden rel="noopener" target="_blank" data-i18n="more.repo">ver código e README ⟶</a>
           </article>
           <article class="card">
-            <p class="kind">estudo pessoal · Dados</p>
-            <h3>Validação de dados com SQL</h3>
-            <p>
+            <p class="kind" data-i18n="k.data">estudo pessoal · Dados</p>
+            <h3 data-i18n="p3.t">Validação de dados com SQL</h3>
+            <p data-i18n="p3.d">
               Oito verificações documentadas (duplicidade, obrigatórios, integridade referencial, consistência de totais,
               domínio de status) rodando contra um conjunto limpo e outro com defeitos plantados.
             </p>
             <p class="tags"><span class="tag">SQL</span><span class="tag">SQLite</span><span class="tag">node:test</span></p>
-            <a class="more" data-github-repo="qa-sql-data-validation" hidden rel="noopener" target="_blank">ver código e README ⟶</a>
+            <a class="more" data-github-repo="qa-sql-data-validation" hidden rel="noopener" target="_blank" data-i18n="more.repo">ver código e README ⟶</a>
           </article>
           <article class="card">
-            <p class="kind">estudo pessoal · CI/CD</p>
-            <h3>Pipeline de qualidade</h3>
-            <p>
+            <p class="kind" data-i18n="k.ci">estudo pessoal · CI/CD</p>
+            <h3 data-i18n="p4.t">Pipeline de qualidade</h3>
+            <p data-i18n="p4.d">
               GitHub Actions em cada Pull Request e no branch principal: lint, varredura de segredos e testes do site, relatórios
               como artefatos e publicação somente se tudo passar. Cada estudo acima tem o seu próprio pipeline no repositório dele.
             </p>
-            <p class="tags"><span class="tag">GitHub Actions</span><span class="tag">Pages</span><span class="tag">Artefatos</span></p>
-            <a class="more" data-repo=".github/workflows/ci.yml" hidden rel="noopener" target="_blank">ver workflow ⟶</a>
+            <p class="tags"><span class="tag">GitHub Actions</span><span class="tag">Pages</span><span class="tag" data-i18n="t.artifacts">Artefatos</span></p>
+            <a class="more" data-repo=".github/workflows/ci.yml" hidden rel="noopener" target="_blank" data-i18n="more.workflow">ver workflow ⟶</a>
           </article>
         </div>
       </section>
 
       <section id="formacao" class="wrap" aria-labelledby="h-form">
-        <h2 id="h-form"><span class="num">05</span> Formação</h2>
+        <h2 id="h-form"><span class="num">05</span> <span data-i18n="h.education">Formação</span></h2>
         <ul class="plain">
-          <li><strong>Pós-graduação em Engenharia de Software com ênfase em Qualidade e Teste de Software</strong> - Anhanguera Educacional · jan–jun 2026 · concluída</li>
-          <li><strong>Bacharelado em Engenharia de Computação</strong> - Anhanguera Educacional · 2018–2022</li>
-          <li><strong>Idiomas:</strong> Português (nativo) · Inglês C1 / avançado</li>
+          <li data-i18n="edu.1"><strong>Pós-graduação em Engenharia de Software com ênfase em Qualidade e Teste de Software</strong> - Anhanguera Educacional · jan–jun 2026 · concluída</li>
+          <li data-i18n="edu.2"><strong>Bacharelado em Engenharia de Computação</strong> - Anhanguera Educacional · 2018–2022</li>
+          <li data-i18n="edu.3"><strong>Idiomas:</strong> Português (nativo) · Inglês C1 / avançado</li>
         </ul>
       </section>
 
       <section id="contato" class="wrap" aria-labelledby="h-cont">
-        <h2 id="h-cont"><span class="num">06</span> Contato</h2>
-        <p>Aberto a conversas sobre posições de QA, automação e qualidade de software.</p>
+        <h2 id="h-cont"><span class="num">06</span> <span data-i18n="h.contact">Contato</span></h2>
+        <p data-i18n="contact.p">Aberto a conversas sobre posições de QA, automação e qualidade de software.</p>
         <p class="actions">
           <a class="btn primary" href="mailto:luizcaroso@gmail.com">luizcaroso@gmail.com</a>
           <a class="btn" href="https://www.linkedin.com/in/luiz-filipe-caroso" rel="noopener" target="_blank">LinkedIn</a>

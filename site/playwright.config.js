@@ -13,7 +13,8 @@ export default defineConfig({
     ['html', { outputFolder: 'reports/html', open: 'never' }],
     ['junit', { outputFile: 'reports/junit.xml' }],
   ],
-  use: { baseURL: `http://localhost:${PORT}`, trace: 'on-first-retry', screenshot: 'only-on-failure' },
+  // locale fixo: sem ?lang= nem escolha salva, o site segue o idioma do navegador (e o Playwright usa en-US por padrão)
+  use: { baseURL: `http://localhost:${PORT}`, locale: 'pt-BR', trace: 'on-first-retry', screenshot: 'only-on-failure' },
   projects: [
     { name: 'desktop', use: { ...devices['Desktop Chrome'], channel } },
     { name: 'mobile', use: { ...devices['Pixel 7'], channel } },
